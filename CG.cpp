@@ -13,14 +13,20 @@ bool SolveRMP(BnPNode& node)
 	int* Req_Length = ProblemData::ReqL;
 	int* b = ProblemData::b;
 
-	// generate initial patterns for RMP
-	vector<int*> Pattern;
-	for (int i = 0; i < nLength; i++)
-	{
-		int* Pat0 = new int[nLength]();
-		Pat0[i] = std::floor(Log_Length / Req_Length[i]);
+	// when node already has the patterns from parent node
+	vector<int*>& Pattern = node.patterns;
 
-		Pattern.push_back(Pat0);
+	// root node
+	// generate initial patterns for RMP
+	if (Pattern.empty())
+	{
+		for (int i = 0; i < nLength; i++)
+		{
+			int* Pat0 = new int[nLength]();
+			Pat0[i] = std::floor(Log_Length / Req_Length[i]);
+
+			Pattern.push_back(Pat0);
+		}
 	}
 
 	vector<double> final_sol;

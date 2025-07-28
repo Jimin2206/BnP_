@@ -7,6 +7,8 @@
 #include <iostream>
 #include <limits>
 
+using namespace std;
+
 //void BnP()
 int main()
 {
@@ -35,14 +37,13 @@ int main()
 		double obj = node.lp_bound;
 		vector<double> sol = node.solution;
 
+		if (obj >= best_obj) continue;
+
 		if (node.is_integral)
 		{
-			if (obj < best_obj)
-			{
-				best_obj = obj;
-				best_sol = sol;
-				cout << "New incumbent found! obj = " << best_obj << endl;
-			}
+			best_obj = obj;
+			best_sol = sol;
+			cout << "New incumbent found! obj = " << best_obj << endl;
 			continue;
 		}
 
