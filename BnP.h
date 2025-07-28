@@ -1,3 +1,3 @@
-#pragma once
-
-void BnP();
+//#pragma once
+//
+//void BnP();

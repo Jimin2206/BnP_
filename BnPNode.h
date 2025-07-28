@@ -8,8 +8,8 @@ struct BnPNode
 {
 	int node_id;
 	
-	// 노드에서 사용중인 패턴 집합
-	vector<int*> patterns;
+	//// 노드에서 사용중인 패턴 집합
+	//vector<int*> patterns;
 
 	// 노드에 적용된 분기 조건들
 	// int: 분기 대상 변수 인덱스 (ex. x3)
@@ -27,5 +27,4 @@ struct BnPNode
 
 	// 디폴트 생성자
 	BnPNode() : node_id(-1), lp_bound(0.0), is_integral(false) {}
-	
 };

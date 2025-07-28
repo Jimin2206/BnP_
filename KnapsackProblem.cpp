@@ -1,5 +1,6 @@
 #include "Functions.h"
 #include "Highs.h"
+#include "ProblemData.h"
 #include <vector>
 #include <iostream>
 #include <limits>
@@ -66,17 +67,16 @@ double SubProblem(double* Dual_Vals, int* NewPattern)
 	const vector<double>& sol = highs.getSolution().col_value;	// 최적 변수 값
 	double obj = highs.getInfo().objective_function_value;		// 목적 함수 값
 
-	cout << "\t New pattern generated: [";
+	//cout << "\t New pattern generated: [";
 	for (int i = 0; i < nLength; ++i)
 	{
 		NewPattern[i] = (int)(sol[i] + 0.5);
-		cout << " " << NewPattern[i];
+		//cout << " " << NewPattern[i];
 	}
-	cout << "]" << endl;
+	/*cout << "]" << endl;
 
 	cout << "\n\t\t SP obj is: " << obj << endl;
-	cout << "\n\n\n\n";
+	cout << "\n\n\n\n";*/
 
 	return obj;
-
 }

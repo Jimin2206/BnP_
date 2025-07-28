@@ -1,3 +1,7 @@
+#pragma once
+#include <iostream>
+#include <random>
+#include <fstream>
 #include <chrono>
 #include "Highs.h"
 

@@ -17,7 +17,7 @@ link_directories(${HIGHS_DIR}/build/Debug/bin)
 
 # 실행 파일 생성
 #add_executable(HighsExample call_highs_from_cpp.cpp)
-add_executable(BnP_ main.cpp "BnPNode.h" "CG.h" "CG.cpp" "ProblemData.h" "ProblemData.cpp" "Functions.h" "KnapsackProblem.cpp" "BnP.h" "BnP.cpp")
+add_executable(BnP_ BnP.cpp "BnP.h" "BnPNode.h" "CG.cpp" "CG.h" "Functions.h" "KnapsackProblem.cpp" "ProblemData.cpp" "ProblemData.h")
 
 # HiGHS 라이브러리 연결
 target_link_libraries(BnP_ highs)
