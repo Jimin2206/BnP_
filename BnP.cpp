@@ -30,20 +30,20 @@ int main()
 
 		node.node_id = node_id++;
 
-		bool ok = SolveRMP(node);
+		bool ok = SolveRMP(node);	// solve LP relaxation of root node via CG
 
-		if (!ok) continue;	// Highs 실패한 경우 해당 노드 무시하고 다음으로 넘어감
+		if (!ok) continue;
 
 		double obj = node.lp_bound;
 		vector<double> sol = node.solution;
 
 		if (obj >= best_obj) continue;
 
-		if (node.is_integral)
+		if (node.is_integral)	
 		{
 			best_obj = obj;
 			best_sol = sol;
-			cout << "New incumbent found! obj = " << best_obj << endl;
+			cout << "New incumbent found! obj = " << best_obj << endl;	
 			continue;
 		}
 
@@ -59,7 +59,7 @@ int main()
 				var = i;
 			}
 		}
-		if (var == -1) continue;
+		if (var == -1) continue;	// 정수해
 		
 		double val = node.solution[var];
 

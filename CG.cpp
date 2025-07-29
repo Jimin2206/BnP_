@@ -13,7 +13,7 @@ bool SolveRMP(BnPNode& node)
 	int* Req_Length = ProblemData::ReqL;
 	int* b = ProblemData::b;
 
-	// when node already has the patterns from parent node
+	// when node already has the patterns
 	vector<int*>& Pattern = node.patterns;
 
 	// root node
