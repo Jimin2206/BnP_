@@ -65,12 +65,10 @@ int main()
 
 		BnPNode left = node;
 		left.var_bounds.push_back({ var, {0.0, floor(val)} });
-		//left.AddOrUpdateBound(var, 0.0, floor(val));
 		S.push(left);
 
 		BnPNode right = node;
 		right.var_bounds.push_back({ var, {ceil(val), 1e30} });
-		//right.AddOrUpdateBound(var, ceil(val), 1e30);
 		S.push(right);
 
 		/*cout << "Current LP bound: " << obj << ", Best integer obj: " << best_obj << endl;

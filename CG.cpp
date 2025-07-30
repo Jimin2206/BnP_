@@ -37,8 +37,8 @@ bool SolveRMP(BnPNode& node)
 	while (true)
 	{
 		iter_count++;
+		
 		// Solve the restricted master problem (RMP) using HiGHS
-
 		Highs highs;
 		HighsModel model;
 		model.lp_.sense_ = ObjSense::kMinimize;
@@ -61,6 +61,21 @@ bool SolveRMP(BnPNode& node)
 			cout << "{" << bc.first << ", (" << bc.second.first << ", " << bc.second.second << ") }" << endl;
 		}
 
+		/*for (const auto& bc : node.var_bounds)
+		{
+			int idx = bc.first;
+			double new_lb = bc.second.first;
+			double new_ub = bc.second.second;
+
+			model.lp_.col_lower_[idx] = max(model.lp_.col_lower_[idx], new_lb);
+			model.lp_.col_upper_[idx] = min(model.lp_.col_upper_[idx], new_ub);
+
+			if (model.lp_.col_lower_[idx] > model.lp_.col_upper_[idx])
+			{
+				return false;
+			}
+		}*/
+		
 
 		// constraints
 		model.lp_.row_lower_.assign(b, b + nLength);
@@ -144,7 +159,6 @@ bool SolveRMP(BnPNode& node)
 		{
 			Pattern.push_back(NewPat);
 		}
-
 	}
 
 	for (int p = 0; p < Pattern.size(); p++)
