@@ -5,6 +5,7 @@
 #include <iostream>
 #include <cmath>
 #include <iomanip>
+#include <algorithm>
 
 bool SolveRMP(BnPNode& node)
 {
@@ -13,7 +14,7 @@ bool SolveRMP(BnPNode& node)
 	int* Req_Length = ProblemData::ReqL;
 	int* b = ProblemData::b;
 
-	// when node already has the patterns
+	// when node already has the patterns (inherit patterns to offspring node)
 	vector<int*>& Pattern = node.patterns;
 
 	// root node
@@ -57,7 +58,9 @@ bool SolveRMP(BnPNode& node)
 			int idx = bc.first;
 			model.lp_.col_lower_[idx] = bc.second.first;
 			model.lp_.col_upper_[idx] = bc.second.second;
+			cout << "{" << bc.first << ", (" << bc.second.first << ", " << bc.second.second << ") }" << endl;
 		}
+
 
 		// constraints
 		model.lp_.row_lower_.assign(b, b + nLength);
@@ -111,7 +114,7 @@ bool SolveRMP(BnPNode& node)
 		node.is_integral = true;
 		for (auto val : sol)
 		{
-			if (abs(val - round(val)) > 1e-5)
+			if (fabs(val - round(val)) > 1e-5)
 			{
 				node.is_integral = false;
 				break;
@@ -141,6 +144,7 @@ bool SolveRMP(BnPNode& node)
 		{
 			Pattern.push_back(NewPat);
 		}
+
 	}
 
 	for (int p = 0; p < Pattern.size(); p++)

@@ -53,4 +53,23 @@ struct BnPNode
 			delete[] pat;
 		}
 	}
+
+	/*void AddOrUpdateBound(int var_idx, double new_lb, double new_ub)
+	{
+		bool found = false;
+		for (auto& bc : var_bounds)
+		{
+			if (bc.first == var_idx)
+			{
+				bc.second.first = std::max(bc.second.first, new_lb);
+				bc.second.second = std::min(bc.second.second, new_ub);
+				found = true;
+				break;
+			}
+		}
+		if (!found)
+		{
+			var_bounds.push_back({ var_idx, {new_lb, new_ub} });
+		}
+	}*/
 };

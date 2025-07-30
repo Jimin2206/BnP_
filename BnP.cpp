@@ -24,7 +24,7 @@ int main()
 	int node_id = 0;
 
 	while (!S.empty())
-	{
+	{ 
 		BnPNode node = S.top();
 		S.pop();
 
@@ -65,11 +65,16 @@ int main()
 
 		BnPNode left = node;
 		left.var_bounds.push_back({ var, {0.0, floor(val)} });
+		//left.AddOrUpdateBound(var, 0.0, floor(val));
 		S.push(left);
 
 		BnPNode right = node;
 		right.var_bounds.push_back({ var, {ceil(val), 1e30} });
+		//right.AddOrUpdateBound(var, ceil(val), 1e30);
 		S.push(right);
+
+		/*cout << "Current LP bound: " << obj << ", Best integer obj: " << best_obj << endl;
+		cout << endl;*/
 	}
 
 	cout << endl;
